@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 app.use(express.logger());
 
-var buf = new Buffer(1024);
+var buf = new Buffer(102400);
 
 var file = require("fs");
 
