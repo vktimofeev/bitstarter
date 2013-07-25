@@ -36,6 +36,11 @@ var assertFileExists = function(infile) {
     return instr;
 };
 
+var assertURLExists = function(url) {
+
+};
+
+
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(fs.readFileSync(htmlfile));
 };
@@ -65,7 +70,13 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+        .option('-u, --url <webpage_url>', 'URL of the webpage')
         .parse(process.argv);
+/*    if(program.file && program.url) {
+        console.log("You must specify either filename or URL");
+        process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code                                                                                                                                                     
+    }
+*/
     var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
